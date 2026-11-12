@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roger Dublagem | Portfólio Profissional de Dublador</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Montserrat & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bordeaux: {
+                            900: '#3a080d',
+                            800: '#58111a',
+                            700: '#721c24',
+                            600: '#8b0000',
+                            500: '#a81c24',
+                            400: '#c82333',
+                        },
+                        darkbg: {
+                            900: '#0a0a0c',
+                            800: '#121216',
+                            700: '#1a1a22',
+                            600: '#242430'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0c;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .bordeaux-gradient {
+            background: linear-gradient(135deg, #721c24 0%, #3a080d 50%, #121216 100%);
+        }
+
+        .card-bordeaux-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(114, 28, 36, 0.25);
+        }
+
+        .card-bordeaux-hover:hover {
+            border-color: rgba(168, 28, 36, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(139, 0, 0, 0.4);
+        }
+
+        /* Scrollbar customizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #58111a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b0000;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-bordeaux-600 selection:text-white">
+
+    <!-- BARRA DE ADMINISTRADOR -->
+    <div id="adminBar" class="hidden bg-bordeaux-800 text-white px-4 py-2 border-b border-bordeaux-600 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2 text-xs md:text-sm">
+            <div class="flex items-center gap-2 font-semibold">
+                <span class="inline-block w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
+                <i class="fa-solid fa-user-shield text-bordeaux-400"></i>
+                <span>Painel do Administrador (Conectado)</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="openEditProfileModal()" class="bg-bordeaux-600 hover:bg-bordeaux-500 text-white px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-pen-to-square"></i> Editar Perfil & Bio
+                </button>
+                <button onclick="openAddDubbingModal()" class="bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-plus"></i> Nova Dublagem
+                </button>
+                <button onclick="logoutAdmin()" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1.5 border border-gray-700">
+                    <i class="fa-solid fa-right-from-bracket"></i> Sair
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CABEÇALHO / NAVEGAÇÃO -->
+    <header class="bg-darkbg-900/90 backdrop-blur-md sticky top-0 z-40 border-b border-bordeaux-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-bordeaux-800 to-bordeaux-600 flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition">
+                        <i class="fa-solid fa-microphone-lines text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="font-heading font-extrabold text-xl tracking-tight text-white block leading-none">ROGER</span>
+                        <span class="text-xs font-medium text-bordeaux-400 tracking-widest uppercase">Dublador & Voice Actor</span>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-gray-300">
+                    <a href="#apresentacao" class="hover:text-bordeaux-400 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-user text-xs opacity-70"></i> Apresentação
+                    </a>
+                    <a href="#dublagens" class="hover:text-bordeaux-400 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-compact-disc text-xs opacity-70"></i> Dublagens
+                    </a>
+                    <a href="#contato" class="hover:text-bordeaux-400 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-paper-plane text-xs opacity-70"></i> Contato
+                    </a>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <button id="loginBtnTrigger" onclick="openLoginModal()" class="border border-bordeaux-700/60 hover:border-bordeaux-500 bg-bordeaux-900/40 hover:bg-bordeaux-800/80 text-gray-200 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-lock text-bordeaux-400"></i>
+                        <span>Área Admin</span>
+                    </button>
+
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-gray-400 hover:text-white hover:bg-darkbg-700">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-darkbg-800 border-b border-bordeaux-900/80 px-4 pt-2 pb-4 space-y-2">
+            <a href="#apresentacao" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-bordeaux-400 font-medium">Apresentação</a>
+            <a href="#dublagens" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-bordeaux-400 font-medium">Dublagens</a>
+            <a href="#contato" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-bordeaux-400 font-medium">Contato</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- SESSÃO 1: APRESENTAÇÃO E BIO -->
+        <section id="apresentacao" class="py-16 md:py-24 relative overflow-hidden">
+            <div class="absolute -top-40 -left-40 w-96 h-96 bg-bordeaux-800/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute top-1/2 -right-40 w-96 h-96 bg-bordeaux-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-5 flex flex-col items-center">
+                        <div class="relative group">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-bordeaux-600 to-bordeaux-900 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-500"></div>
+                            
+                            <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-2xl overflow-hidden border-2 border-bordeaux-600/60 bg-darkbg-800 shadow-2xl">
+                                <img id="displayPhoto" 
+                                     src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop" 
+                                     alt="Roger Dublador" 
+                                     class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
+                                     onerror="this.src='https://placehold.co/600x600/3a080d/ffffff?text=Roger+Dublador'">
+                            </div>
+
+                            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-darkbg-800 border border-bordeaux-600 text-gray-200 px-4 py-1.5 rounded-full text-xs font-medium shadow-lg flex items-center gap-2 whitespace-nowrap">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                                <span>Disponível para Projetos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bordeaux-900/60 border border-bordeaux-700/50 text-bordeaux-400 text-xs font-semibold uppercase tracking-wider mb-3">
+                                <i class="fa-solid fa-bullhorn"></i> Voz & Interpretação
+                            </div>
+                            <h1 id="displayName" class="font-heading text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+                                Roger Dublador
+                            </h1>
+                            <p id="displayTitle" class="text-xl font-medium text-bordeaux-400 mt-2">
+                                Ator de Voz | Dublagens, Games e Animações
+                            </p>
+                        </div>
+
+                        <div class="bg-darkbg-800/80 border border-bordeaux-900/70 p-6 rounded-2xl shadow-xl backdrop-blur-sm">
+                            <h2 class="text-xs uppercase font-bold text-gray-400 tracking-wider mb-2 flex items-center gap-2 justify-center lg:justify-start">
+                                <i class="fa-solid fa-address-card text-bordeaux-500"></i> Sobre Mim
+                            </h2>
+                            <p id="displayBio" class="text-gray-300 leading-relaxed text-base whitespace-pre-line">
+                                Olá! Sou o Roger, profissional apaixonado por dar vida e emoção a personagens através da voz. Tenho experiência em dublagem de séries, animes, jogos eletrônicos, comerciais e narrações institucionais. 
+                                
+                                Meu objetivo é entregar uma interpretação autêntica, versátil e alinhada com as necessidades do seu projeto. Confira minhas amostras e entre em contato!
+                            </p>
+                        </div>
+
+                        <!-- PLAYER MP3 INTEGRADO (DEMO REEL / APRESENTAÇÃO VIA DRIVE) -->
+                        <div class="bg-gradient-to-r from-bordeaux-900/90 to-darkbg-800 border border-bordeaux-700/60 p-5 rounded-2xl shadow-xl">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-bordeaux-600 flex items-center justify-center text-white shadow-md">
+                                        <i class="fa-solid fa-circle-play text-xl"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <h3 class="text-white font-bold text-sm sm:text-base">Demo Reel Oficial</h3>
+                                        <p class="text-xs text-gray-400">Amostras principais de voz & versatilidade</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs bg-bordeaux-900 text-bordeaux-300 border border-bordeaux-700 px-2.5 py-1 rounded-full font-mono">Drive / MP3</span>
+                            </div>
+
+                            <div id="mainReelPlayerContainer" class="mt-3">
+                                <audio id="mainAudioPlayer" controls class="w-full h-10 rounded-lg filter drop-shadow">
+                                    <source id="mainAudioSource" src="" type="audio/mpeg">
+                                    Seu navegador não suporta o elemento de áudio.
+                                </audio>
+                                <iframe id="mainDriveIframe" class="w-full h-16 rounded-lg hidden border border-bordeaux-800" src="" allow="autoplay"></iframe>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SESSÃO 2: DUBLAGENS E PROJETOS -->
+        <section id="dublagens" class="py-16 bg-darkbg-800/50 border-t border-bordeaux-900/40 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bordeaux-900/60 border border-bordeaux-700/50 text-bordeaux-400 text-xs font-semibold uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-clapperboard"></i> Portfólio de Trabalhos
+                        </div>
+                        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                            Dublagens e Trabalhos
+                        </h2>
+                        <p class="text-gray-400 mt-1 max-w-xl text-sm sm:text-base">
+                            Ouça os trechos de dublagem, interpretações e trabalhos realizados.
+                        </p>
+                    </div>
+
+                    <div id="categoryFilters" class="flex flex-wrap gap-2">
+                        <button onclick="filterDubbings('todos')" class="filter-btn active bg-bordeaux-600 text-white px-4 py-1.5 rounded-xl text-xs font-semibold transition shadow">Todos</button>
+                        <button onclick="filterDubbings('anime')" class="filter-btn bg-darkbg-700 text-gray-300 hover:bg-bordeaux-900 px-4 py-1.5 rounded-xl text-xs font-semibold transition">Animes</button>
+                        <button onclick="filterDubbings('games')" class="filter-btn bg-darkbg-700 text-gray-300 hover:bg-bordeaux-900 px-4 py-1.5 rounded-xl text-xs font-semibold transition">Games</button>
+                        <button onclick="filterDubbings('filmes')" class="filter-btn bg-darkbg-700 text-gray-300 hover:bg-bordeaux-900 px-4 py-1.5 rounded-xl text-xs font-semibold transition">Filmes & Séries</button>
+                        <button onclick="filterDubbings('comercial')" class="filter-btn bg-darkbg-700 text-gray-300 hover:bg-bordeaux-900 px-4 py-1.5 rounded-xl text-xs font-semibold transition">Comerciais</button>
+                    </div>
+                </div>
+
+                <div id="dubbingGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Cards carregados via JS -->
+                </div>
+
+                <div id="emptyDubbingState" class="hidden text-center py-16 bg-darkbg-900/60 rounded-3xl border border-bordeaux-900">
+                    <i class="fa-solid fa-compact-disc text-5xl text-bordeaux-700 mb-3 animate-spin"></i>
+                    <h3 class="text-xl font-bold text-white">Nenhuma dublagem encontrada</h3>
+                    <p class="text-gray-400 text-sm mt-1">Adicione novas dublagens pelo painel de administrador.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SESSÃO 3: MEIOS DE CONTATO -->
+        <section id="contato" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bordeaux-900/60 border border-bordeaux-700/50 text-bordeaux-400 text-xs font-semibold uppercase tracking-wider mb-3">
+                        <i class="fa-solid fa-headset"></i> Vamos Trabalhar Juntos?
+                    </div>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                        Entre em Contato
+                    </h2>
+                    <p class="text-gray-400 mt-2 text-sm sm:text-base">
+                        Precisa de uma voz marcante para o seu projeto? Mande uma mensagem em qualquer um dos canais abaixo.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    
+                    <!-- DISCORD -->
+                    <div class="bg-darkbg-800/90 border border-bordeaux-900/80 p-8 rounded-3xl text-center card-bordeaux-hover flex flex-col items-center justify-between group">
+                        <div class="w-16 h-16 rounded-2xl bg-indigo-900/40 text-indigo-400 border border-indigo-700/40 flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition duration-300">
+                            <i class="fa-brands fa-discord"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Discord</h3>
+                            <p class="text-gray-400 text-xs mb-4">Conversa direta & alinhamentos rápidos</p>
+                            <span id="discordUserTag" class="inline-block bg-darkbg-900 px-4 py-2 rounded-xl text-sm font-mono text-indigo-300 border border-indigo-950 select-all mb-4">
+                                @manjasdale
+                            </span>
+                        </div>
+                        <button onclick="copyToClipboard('@manjasdale', 'Nick do Discord copiado!')" class="w-full bg-indigo-600/20 hover:bg-indigo-600 border border-indigo-500/40 text-indigo-200 hover:text-white py-2.5 rounded-xl font-semibold text-xs tracking-wide uppercase transition flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-copy"></i> Copiar Nick
+                        </button>
+                    </div>
+
+                    <!-- INSTAGRAM -->
+                    <div class="bg-darkbg-800/90 border border-bordeaux-900/80 p-8 rounded-3xl text-center card-bordeaux-hover flex flex-col items-center justify-between group">
+                        <div class="w-16 h-16 rounded-2xl bg-pink-900/40 text-pink-400 border border-pink-700/40 flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition duration-300">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Instagram</h3>
+                            <p class="text-gray-400 text-xs mb-4">Bastidores, amostras & atualizações</p>
+                            <span class="inline-block bg-darkbg-900 px-4 py-2 rounded-xl text-sm font-mono text-pink-300 border border-pink-950 mb-4">
+                                @roger_dubla
+                            </span>
+                        </div>
+                        <a id="instagramLink" href="https://instagram.com/roger_dubla" target="_blank" class="w-full bg-pink-600/20 hover:bg-pink-600 border border-pink-500/40 text-pink-200 hover:text-white py-2.5 rounded-xl font-semibold text-xs tracking-wide uppercase transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Perfil
+                        </a>
+                    </div>
+
+                    <!-- E-MAIL -->
+                    <div class="bg-darkbg-800/90 border border-bordeaux-900/80 p-8 rounded-3xl text-center card-bordeaux-hover flex flex-col items-center justify-between group">
+                        <div class="w-16 h-16 rounded-2xl bg-bordeaux-900/60 text-bordeaux-400 border border-bordeaux-700/50 flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">E-mail</h3>
+                            <p class="text-gray-400 text-xs mb-4">Propostas, orçamentos e testes</p>
+                            <span class="inline-block bg-darkbg-900 px-3 py-2 rounded-xl text-xs font-mono text-bordeaux-300 border border-bordeaux-950 mb-4 truncate max-w-[200px]">
+                                rogerdubla020@gmail.com
+                            </span>
+                        </div>
+                        <a href="mailto:rogerdubla020@gmail.com" class="w-full bg-bordeaux-600 hover:bg-bordeaux-500 border border-bordeaux-400/40 text-white py-2.5 rounded-xl font-semibold text-xs tracking-wide uppercase transition flex items-center justify-center gap-2 shadow-lg">
+                            <i class="fa-solid fa-paper-plane"></i> Enviar E-mail
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-darkbg-900 border-t border-bordeaux-900/60 py-8 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 Roger Dublador. Todos os direitos reservados.</p>
+            <div class="flex items-center gap-4 text-gray-400">
+                <a href="#apresentacao" class="hover:text-bordeaux-400">Apresentação</a> •
+                <a href="#dublagens" class="hover:text-bordeaux-400">Dublagens</a> •
+                <a href="#contato" class="hover:text-bordeaux-400">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAIS -->
+
+    <!-- MODAL 1: LOGIN ADMIN -->
+    <div id="loginModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-darkbg-800 border border-bordeaux-700/80 rounded-3xl w-full max-w-md p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-bordeaux-800 border border-bordeaux-600 text-bordeaux-300 mx-auto flex items-center justify-center text-2xl mb-3 shadow-lg">
+                    <i class="fa-solid fa-user-lock"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white">Acesso Administrativo</h3>
+                <p class="text-xs text-gray-400 mt-1">Entre com as credenciais cadastradas para gerenciar o site</p>
+            </div>
+
+            <form id="loginForm" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">E-mail Registrado</label>
+                    <input type="email" id="loginEmail" required placeholder="rogerdubla020@gmail.com" 
+                           class="w-full bg-darkbg-900 border border-bordeaux-900 focus:border-bordeaux-500 rounded-xl px-4 py-3 text-white text-sm outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Senha</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••" 
+                           class="w-full bg-darkbg-900 border border-bordeaux-900 focus:border-bordeaux-500 rounded-xl px-4 py-3 text-white text-sm outline-none transition">
+                </div>
+
+                <div id="loginError" class="hidden bg-red-950/80 border border-red-700 text-red-300 text-xs p-3 rounded-xl flex items-center gap-2">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span>E-mail ou senha incorretos!</span>
+                </div>
+
+                <button type="submit" class="w-full bg-bordeaux-600 hover:bg-bordeaux-500 text-white py-3 rounded-xl font-bold text-sm transition shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-right-to-bracket"></i> Entrar no Painel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: EDITAR PERFIL & BIO -->
+    <div id="editProfileModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 overflow-y-auto">
+        <div class="bg-darkbg-800 border border-bordeaux-700/80 rounded-3xl w-full max-w-2xl p-6 sm:p-8 shadow-2xl relative my-8">
+            <button onclick="closeEditProfileModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <h3 class="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+                <i class="fa-solid fa-pen-to-square text-bordeaux-400"></i> Editar Apresentação
+            </h3>
+            <p class="text-xs text-gray-400 mb-6">Atualize suas informações visíveis no cabeçalho e na bio principal.</p>
+
+            <form onsubmit="saveProfileChanges(event)" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Seu Nome / Nome Artístico</label>
+                        <input type="text" id="editName" required class="w-full bg-darkbg-900 border border-bordeaux-900 focus:border-bordeaux-500 rounded-xl px-4 py-2.5 text-white text-sm outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Subtítulo / Título Profissional</label>
+                        <input type="text" id="editTitle" required class="w-full bg-darkbg-900 border border-bordeaux-900 focus:border-bordeaux-500 rounded-xl px-4 py-2.5 text-white text-sm outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Link da Foto de Perfil (URL)</label>
+                    <input type="url" id="editPhoto" required class="w-full bg-darkbg-900 border border-bordeaux-900 focus:border-bordeaux-500 rounded-xl px-4 py-2.5 text-white text-sm outline-none" placeholder="https://link-da-sua-foto.jpg">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Link do Demo Reel Principal (Google Drive ou MP3)</label>
+                    <input type="text" id="editAudio" required class="w-full bg-darkbg-900 border border-bordeaux-900 focus:border-bordeaux-500 rounded-xl px-4 py-2.5 text-white text-sm outline-none" placeholder="Cole o link do Google Drive aqui">
+                    <span class="text-[10px] text-gray-400 mt-1 block">💡 Dica: Cole o link "Qualquer pessoa com o link pode ver" do Google Drive.</span>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Texto da Biografia (Apresentação)</label>
+                    <textarea id="editBio" rows="5" required class="w-full bg-darkbg-900 border border-bordeaux-900 focus:border-bordeaux-500 rounded-xl p-4 text-white text-sm outline-none leading-relaxed"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-4 border-t border-bordeaux-900">
+                    <button type="button" onclick="closeEditProfileModal()" class="px-5 py-2.5 rounded-xl border border-gray-700 text-gray-300 text-xs font-bold hover:bg-gray-800">Cancelar</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-bordeaux-600 hover:bg-bordeaux-500 text-white text-xs font-bold shadow-lg">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 3: ADICIONAR OU EDITAR DUBLAGEM -->
+    <div id="dubbingModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 overflow-y-auto">
+        <div class="bg-darkbg-800 border border-bordeaux-700/80 rounded-3xl w-full max-w-2xl p-6 sm:p-8 shadow-2xl relative my-8">
+            <button onclick="closeDubbingModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <h3 id="dubbingModalTitle" class="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+                <i class="fa-solid fa-plus text-bordeaux-400"></i> Nova Dublagem
+            </h3>
+            <p class="text-xs text-gray-400 mb-6">Preencha os dados do trabalho para exibi-lo no seu portfólio.</p>
+
+            <form onsubmit="saveDubbingItem(event)" class="space-y-4">
+                <input type="hidden" id="dubbingId">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Título da Dublagem / Obra</label>
+                        <input type="text" id="dubTitle" required placeholder="Ex: Naruto Shippuden - Cena do Reencontro" class="w-full bg-darkbg-900 border border-bordeaux-900 focus:border-bordeaux-500 rounded-xl px-4 py-2.5 text-white text-sm outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Personagem / Papel</label>
+                        <input type="text" id="dubCharacter" required placeholder="Ex: Sasuke Uchiha / Voz Principal" class="w-full bg-darkbg-900 border border-bordeaux-900 focus:border-bordeaux-500 rounded-xl px-4 py-2.5 text-white text-sm outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Categoria</label>
+                        <select id="dubCategory" class="w-full bg-darkbg-900 border border-bordeaux-900 focus:border-bordeaux-500 rounded-xl px-4 py-2.5 text-white text-sm outline-none">
+                            <option value="anime">Anime</option>
+                            <option value="games">Games</option>
+                            <option value="filmes">Filmes & Séries</option>
+                            <option value="comercial">Comercial</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Tags (Separadas por vírgula)</label>
+                        <input type="text" id="dubTags" placeholder="Ex: Dramático, Jovem, Ação" class="w-full bg-darkbg-900 border border-bordeaux-900 focus:border-bordeaux-500 rounded-xl px-4 py-2.5 text-white text-sm outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Link da Dublagem (Link do Google Drive ou MP3)</label>
+                    <input type="text" id="dubMediaLink" required placeholder="Cole o link do Google Drive (compartilhável) ou URL MP3" class="w-full bg-darkbg-900 border border-bordeaux-900 focus:border-bordeaux-500 rounded-xl px-4 py-2.5 text-white text-sm outline-none">
+                    <span class="text-[10px] text-gray-400 mt-1 block">📌 Cole o link gerado pelo Google Drive ("Qualquer pessoa com o link").</span>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Descrição Detalhada do Trabalho</label>
+                    <textarea id="dubDescription" rows="4" required placeholder="Descreva os detalhes da dublagem, tom de voz utilizado..." class="w-full bg-darkbg-900 border border-bordeaux-900 focus:border-bordeaux-500 rounded-xl p-4 text-white text-sm outline-none"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-4 border-t border-bordeaux-900">
+                    <button type="button" onclick="closeDubbingModal()" class="px-5 py-2.5 rounded-xl border border-gray-700 text-gray-300 text-xs font-bold hover:bg-gray-800">Cancelar</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-bordeaux-600 hover:bg-bordeaux-500 text-white text-xs font-bold shadow-lg">Salvar Dublagem</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST DE NOTIFICAÇÃO -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-bordeaux-700 text-white px-5 py-3 rounded-2xl shadow-2xl border border-bordeaux-500 flex items-center gap-3 translate-y-24 opacity-0 transition duration-300 z-50">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-xl"></i>
+        <span id="toastMessage" class="text-xs sm:text-sm font-semibold">Operação realizada com sucesso!</span>
+    </div>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        const ADMIN_EMAIL = "rogerdubla020@gmail.com";
+        const ADMIN_PASS = "RogerDubla2026";
+
+        const defaultProfile = {
+            name: "Roger Dublador",
+            title: "Ator de Voz | Dublagens, Games e Animações",
+            photo: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop",
+            bio: `Olá! Sou o Roger, profissional apaixonado por dar vida e emoção a personagens através da voz. Tenho experiência em dublagem de séries, animes, jogos eletrônicos, comerciais e narrações institucionais.\n\nMeu objetivo é entregar uma interpretação autêntica, versátil e alinhada com as necessidades do seu projeto. Confira minhas amostras e entre em contato!`,
+            audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        };
+
+        const defaultDubbings = [
+            {
+                id: 1,
+                title: "Anime - Personagem Principal",
+                character: "Herói / Jovem Guerreiro",
+                category: "anime",
+                mediaLink: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+                description: "Interpretação vibrante e enérgica para cena de batalha decisiva. Voz jovem, tom seguro e projeção emocional intensa.",
+                tags: ["Ação", "Jovem", "Vibrante"]
+            },
+            {
+                id: 2,
+                title: "RPG Fantasy Game",
+                character: "Mago Ancião / Vilão",
+                category: "games",
+                mediaLink: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+                description: "Voz grave, imponente e misteriosa. Ideal para personagens sombrios, mentores ou chefões finais de jogos.",
+                tags: ["Grave", "Sombrio", "Vilão"]
+            },
+            {
+                id: 3,
+                title: "Comercial de TV & Web",
+                character: "Narrador Comercial",
+                category: "comercial",
+                mediaLink: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+                description: "Locução comercial moderna, amigável e convincente. Tom caloroso perfeito para marcas de tecnologia e jovens.",
+                tags: ["Comercial", "Jovem", "Amigável"]
+            }
+        ];
+
+        let appState = {
+            isAdmin: false,
+            profile: JSON.parse(localStorage.getItem('roger_dub_profile')) || defaultProfile,
+            dubbings: JSON.parse(localStorage.getItem('roger_dub_items')) || defaultDubbings,
+            currentFilter: 'todos'
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('roger_admin_logged') === 'true') {
+                appState.isAdmin = true;
+            }
+            renderApp();
+        });
+
+        function parseDriveLink(link) {
+            if (!link) return { isDrive: false, directUrl: '' };
+
+            let fileId = null;
+            const matchFile = link.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+            if (matchFile && matchFile[1]) {
+                fileId = matchFile[1];
+            }
+            
+            const matchId = link.match(/id=([a-zA-Z0-9_-]+)/);
+            if (!fileId && matchId && matchId[1]) {
+                fileId = matchId[1];
+            }
+
+            if (fileId) {
+                return {
+                    isDrive: true,
+                    fileId: fileId,
+                    embedUrl: `https://drive.google.com/file/d/${fileId}/preview`,
+                    streamUrl: `https://docs.google.com/uc?export=download&id=${fileId}`
+                };
+            }
+
+            return { isDrive: false, directUrl: link };
+        }
+
+        function renderApp() {
+            const adminBar = document.getElementById('adminBar');
+            const loginBtnTrigger = document.getElementById('loginBtnTrigger');
+            
+            if (appState.isAdmin) {
+                adminBar.classList.remove('hidden');
+                loginBtnTrigger.innerHTML = `<i class="fa-solid fa-user-check text-green-400"></i> <span>Admin Ativo</span>`;
+                loginBtnTrigger.onclick = () => showToast("Você já está logado como Administrador!");
+            } else {
+                adminBar.classList.add('hidden');
+                loginBtnTrigger.innerHTML = `<i class="fa-solid fa-lock text-bordeaux-400"></i> <span>Área Admin</span>`;
+                loginBtnTrigger.onclick = openLoginModal;
+            }
+
+            document.getElementById('displayName').innerText = appState.profile.name;
+            document.getElementById('displayTitle').innerText = appState.profile.title;
+            document.getElementById('displayBio').innerText = appState.profile.bio;
+            document.getElementById('displayPhoto').src = appState.profile.photo;
+
+            const mainAudioPlayer = document.getElementById('mainAudioPlayer');
+            const mainDriveIframe = document.getElementById('mainDriveIframe');
+            const parsedMainLink = parseDriveLink(appState.profile.audioUrl);
+
+            if (parsedMainLink.isDrive) {
+                mainAudioPlayer.classList.add('hidden');
+                mainDriveIframe.classList.remove('hidden');
+                mainDriveIframe.src = parsedMainLink.embedUrl;
+            } else {
+                mainDriveIframe.classList.add('hidden');
+                mainAudioPlayer.classList.remove('hidden');
+                document.getElementById('mainAudioSource').src = appState.profile.audioUrl;
+                mainAudioPlayer.load();
+            }
+
+            renderDubbingGrid();
+        }
+
+        function renderDubbingGrid() {
+            const grid = document.getElementById('dubbingGrid');
+            const emptyState = document.getElementById('emptyDubbingState');
+            grid.innerHTML = '';
+
+            const filteredItems = appState.dubbings.filter(item => {
+                if (appState.currentFilter === 'todos') return true;
+                return item.category === appState.currentFilter;
+            });
+
+            if (filteredItems.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            filteredItems.forEach(item => {
+                const parsed = parseDriveLink(item.mediaLink);
+                const tagHtml = (item.tags || []).map(t => `<span class="bg-bordeaux-950/80 text-bordeaux-300 border border-bordeaux-800 text-[10px] font-semibold px-2.5 py-0.5 rounded-full">${t.trim()}</span>`).join(' ');
+
+                let playerMarkup = '';
+                if (parsed.isDrive) {
+                    playerMarkup = `<iframe src="${parsed.embedUrl}" class="w-full h-24 rounded-xl border border-bordeaux-900/60 bg-darkbg-900" allow="autoplay"></iframe>`;
+                } else {
+                    playerMarkup = `
+                        <audio controls class="w-full h-10 rounded-lg">
+                            <source src="${item.mediaLink}" type="audio/mpeg">
+                            Navegador incompatível.
+                        </audio>
+                    `;
+                }
+
+                const adminActions = appState.isAdmin ? `
+                    <div class="flex items-center gap-2 mt-4 pt-3 border-t border-bordeaux-900/60 justify-end">
+                        <button onclick="editDubbingItem(${item.id})" class="text-xs bg-bordeaux-800 hover:bg-bordeaux-700 text-white px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+                            <i class="fa-solid fa-pen"></i> Editar
+                        </button>
+                        <button onclick="deleteDubbingItem(${item.id})" class="text-xs bg-red-950 hover:bg-red-800 text-red-200 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+                            <i class="fa-solid fa-trash"></i> Excluir
+                        </button>
+                    </div>
+                ` : '';
+
+                const cardHtml = `
+                    <div class="bg-darkbg-800/90 rounded-3xl p-6 border border-bordeaux-900/60 card-bordeaux-hover flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between gap-2 mb-3">
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-bordeaux-400 block mb-0.5">${item.category}</span>
+                                    <h3 class="text-lg font-bold text-white leading-snug">${item.title}</h3>
+                                </div>
+                                <span class="bg-darkbg-900 text-bordeaux-300 border border-bordeaux-800 text-xs px-2.5 py-1 rounded-xl font-medium flex items-center gap-1.5 whitespace-nowrap">
+                                    <i class="fa-solid fa-mask"></i> ${item.character}
+                                </span>
+                            </div>
+
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                ${tagHtml}
+                            </div>
+
+                            <p class="text-gray-300 text-xs leading-relaxed mb-5 bg-darkbg-900/40 p-3 rounded-xl border border-darkbg-600/30">
+                                ${item.description}
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="mt-2">
+                                ${playerMarkup}
+                            </div>
+                            ${adminActions}
+                        </div>
+                    </div>
+                `;
+
+                grid.innerHTML += cardHtml;
+            });
+        }
+
+        function filterDubbings(cat) {
+            appState.currentFilter = cat;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-bordeaux-600', 'text-white');
+                btn.classList.add('bg-darkbg-700', 'text-gray-300');
+            });
+            event.target.classList.remove('bg-darkbg-700', 'text-gray-300');
+            event.target.classList.add('bg-bordeaux-600', 'text-white');
+            renderDubbingGrid();
+        }
+
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.getElementById('loginError').classList.add('hidden');
+        }
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+
+        function handleLoginSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const pass = document.getElementById('loginPassword').value.trim();
+
+            if (email === ADMIN_EMAIL && pass === ADMIN_PASS) {
+                appState.isAdmin = true;
+                sessionStorage.setItem('roger_admin_logged', 'true');
+                closeLoginModal();
+                renderApp();
+                showToast("Login administrativo efetuado com sucesso!");
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            appState.isAdmin = false;
+            sessionStorage.removeItem('roger_admin_logged');
+            renderApp();
+            showToast("Você saiu do painel administrativo.");
+        }
+
+        function openEditProfileModal() {
+            document.getElementById('editName').value = appState.profile.name;
+            document.getElementById('editTitle').value = appState.profile.title;
+            document.getElementById('editPhoto').value = appState.profile.photo;
+            document.getElementById('editAudio').value = appState.profile.audioUrl;
+            document.getElementById('editBio').value = appState.profile.bio;
+            document.getElementById('editProfileModal').classList.remove('hidden');
+        }
+        function closeEditProfileModal() {
+            document.getElementById('editProfileModal').classList.add('hidden');
+        }
+
+        function saveProfileChanges(e) {
+            e.preventDefault();
+            appState.profile = {
+                name: document.getElementById('editName').value.trim(),
+                title: document.getElementById('editTitle').value.trim(),
+                photo: document.getElementById('editPhoto').value.trim(),
+                audioUrl: document.getElementById('editAudio').value.trim(),
+                bio: document.getElementById('editBio').value.trim()
+            };
+            localStorage.setItem('roger_dub_profile', JSON.stringify(appState.profile));
+            closeEditProfileModal();
+            renderApp();
+            showToast("Perfil e Bio atualizados com sucesso!");
+        }
+
+        function openAddDubbingModal() {
+            document.getElementById('dubbingId').value = '';
+            document.getElementById('dubTitle').value = '';
+            document.getElementById('dubCharacter').value = '';
+            document.getElementById('dubCategory').value = 'anime';
+            document.getElementById('dubTags').value = '';
+            document.getElementById('dubMediaLink').value = '';
+            document.getElementById('dubDescription').value = '';
+            document.getElementById('dubbingModalTitle').innerHTML = `<i class="fa-solid fa-plus text-bordeaux-400"></i> Nova Dublagem`;
+            document.getElementById('dubbingModal').classList.remove('hidden');
+        }
+        function closeDubbingModal() {
+            document.getElementById('dubbingModal').classList.add('hidden');
+        }
+
+        function editDubbingItem(id) {
+            const item = appState.dubbings.find(d => d.id === id);
+            if (!item) return;
+
+            document.getElementById('dubbingId').value = item.id;
+            document.getElementById('dubTitle').value = item.title;
+            document.getElementById('dubCharacter').value = item.character;
+            document.getElementById('dubCategory').value = item.category;
+            document.getElementById('dubTags').value = (item.tags || []).join(', ');
+            document.getElementById('dubMediaLink').value = item.mediaLink;
+            document.getElementById('dubDescription').value = item.description;
+
+            document.getElementById('dubbingModalTitle').innerHTML = `<i class="fa-solid fa-pen text-bordeaux-400"></i> Editar Dublagem`;
+            document.getElementById('dubbingModal').classList.remove('hidden');
+        }
+
+        function saveDubbingItem(e) {
+            e.preventDefault();
+            const idVal = document.getElementById('dubbingId').value;
+            const tagsArr = document.getElementById('dubTags').value.split(',').map(t => t.trim()).filter(t => t !== '');
+
+            const dubData = {
+                id: idVal ? parseInt(idVal) : Date.now(),
+                title: document.getElementById('dubTitle').value.trim(),
+                character: document.getElementById('dubCharacter').value.trim(),
+                category: document.getElementById('dubCategory').value,
+                tags: tagsArr,
+                mediaLink: document.getElementById('dubMediaLink').value.trim(),
+                description: document.getElementById('dubDescription').value.trim()
+            };
+
+            if (idVal) {
+                const idx = appState.dubbings.findIndex(d => d.id === parseInt(idVal));
+                if (idx !== -1) appState.dubbings[idx] = dubData;
+            } else {
+                appState.dubbings.unshift(dubData);
+            }
+
+            localStorage.setItem('roger_dub_items', JSON.stringify(appState.dubbings));
+            closeDubbingModal();
+            renderApp();
+            showToast(idVal ? "Dublagem atualizada com sucesso!" : "Nova dublagem adicionada ao portfólio!");
+        }
+
+        function deleteDubbingItem(id) {
+            if (confirm("Tem certeza que deseja remover esta dublagem do portfólio?")) {
+                appState.dubbings = appState.dubbings.filter(d => d.id !== id);
+                localStorage.setItem('roger_dub_items', JSON.stringify(appState.dubbings));
+                renderApp();
+                showToast("Dublagem removida com sucesso.");
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function copyToClipboard(text, msg) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast(msg);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').innerText = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
